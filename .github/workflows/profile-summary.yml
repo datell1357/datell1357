@@ -1,5 +1,6 @@
 name: GitHub Profile Summary Cards
 
+# Manual trigger requested on 2026-07-21
 on:
   schedule:
     - cron: "0 15 * * *"
