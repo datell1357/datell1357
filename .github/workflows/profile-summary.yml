@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "0 15 * * *"
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/profile-summary.yml"
 
 permissions:
   contents: write
@@ -11,15 +16,15 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Generate GitHub profile summary cards
 
     steps:
       - name: Checkout profile repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: true
 
-      - name: Generate and commit summary cards
+      - name: Generate summary cards
         uses: vn7n24fzkq/github-profile-summary-cards@release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -28,4 +33,26 @@ jobs:
           BRANCH_NAME: main
           UTC_OFFSET: 9
           EXCLUDE: ""
-          AUTO_PUSH: true
+          AUTO_PUSH: false
+
+      - name: Commit generated cards
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ ! -d "profile-summary-card-output" ]; then
+            echo "profile-summary-card-output was not generated."
+            exit 1
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add profile-summary-card-output/
+
+          if git diff --cached --quiet; then
+            echo "No summary card changes to commit."
+            exit 0
+          fi
+
+          git commit -m "chore: update GitHub profile summary cards"
+          git push origin HEAD:main
