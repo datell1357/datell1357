@@ -4,9 +4,6 @@ on:
   schedule:
     - cron: "0 15 * * *"
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 permissions:
   contents: write
@@ -14,11 +11,21 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: Generate GitHub profile summary cards
 
     steps:
-      - uses: vn7n24fzkq/github-profile-summary-cards@release
+      - name: Checkout profile repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate and commit summary cards
+        uses: vn7n24fzkq/github-profile-summary-cards@release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          USERNAME: datell1357
+          USERNAME: ${{ github.repository_owner }}
+          BRANCH_NAME: main
           UTC_OFFSET: 9
+          EXCLUDE: ""
+          AUTO_PUSH: true
