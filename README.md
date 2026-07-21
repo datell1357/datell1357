@@ -14,14 +14,35 @@
 
 <p align="center">
   <img
-    src="https://github-readme-stats.vercel.app/api?username=datell1357&show_icons=true&hide_border=true&bg_color=0d1117&title_color=8bd450&text_color=c9d1d9&icon_color=7aa2f7"
-    height="165"
+    src="./profile-summary-card-output/github_dark/0-profile-details.svg"
+    width="100%"
+    alt="datell1357 profile details"
+  />
+</p>
+
+<p align="center">
+  <img
+    src="./profile-summary-card-output/github_dark/3-stats.svg"
+    width="49%"
     alt="datell1357 GitHub stats"
   />
   <img
-    src="https://github-readme-stats.vercel.app/api/top-langs/?username=datell1357&layout=compact&hide_border=true&bg_color=0d1117&title_color=8bd450&text_color=c9d1d9"
-    height="165"
-    alt="datell1357 top languages"
+    src="./profile-summary-card-output/github_dark/1-repos-per-language.svg"
+    width="49%"
+    alt="datell1357 repositories per language"
+  />
+</p>
+
+<p align="center">
+  <img
+    src="./profile-summary-card-output/github_dark/4-productive-time.svg"
+    width="49%"
+    alt="datell1357 productive time"
+  />
+  <img
+    src="./profile-summary-card-output/github_dark/2-most-commit-language.svg"
+    width="49%"
+    alt="datell1357 most committed languages"
   />
 </p>
 
